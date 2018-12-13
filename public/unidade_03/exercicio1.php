@@ -1,11 +1,11 @@
 <?php
 //    Passo 1 - Abrir conexão
 $servidor = "localhost";
-$usuario =  "fabio";
+$usuario =  "fabiovalinhos";
 $senha =    "cebola";
 $banco =    "fase3";
 
-@conecta = mysqli_connect($servidor, $usuario, $senha, $banco);
+$conecta = mysqli_connect($servidor, $usuario, $senha, $banco);
 
 //Passo 2 -Testar conexão
 if (mysqli_connect_errno()) {
@@ -15,10 +15,14 @@ if (mysqli_connect_errno()) {
 
 <?php
 //    Passo 3 - Abrir consulta ao banco de dados
-    $consulta_categorias = "SELECT *";
-    $consulta_categorias .= "FROM categorias";
-    $consulta_categorias = "WHERE categoriaID > 2";
+    $consulta_categorias = "SELECT nomeproduto";
+    $consulta_categorias .= " FROM produtos ";
+
     $categorias = mysqli_query($conecta, $consulta_categorias);
+
+    if (!$categorias) {
+        die("Falha na consulta ao banco de dados");
+    }
 ?>
 
 <!doctype html>
@@ -29,7 +33,16 @@ if (mysqli_connect_errno()) {
     </head>
 
     <body>
-    
+
+        <ul>
+            <?php
+                while ($registro = mysqli_fetch_assoc($categorias)) {
+            ?>
+                <li><?php echo $registro["nomeproduto"] ?></li>
+            <?php
+                }
+            ?>
+        </ul>
     </body>
 </html>
 <?php
