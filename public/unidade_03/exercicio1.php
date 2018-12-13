@@ -1,11 +1,10 @@
 <?php
 //    Passo 1 - Abrir conexão
-$servidor = "localhost";
+$servidor = "mysql.intranet";
 $usuario =  "fabio";
 $senha =    "cebola";
 $banco =    "fase3";
-
-@conecta = mysqli_connect($servidor, $usuario, $senha, $banco);
+$conecta = mysqli_connect($servidor, $usuario, $senha, $banco);
 
 //Passo 2 -Testar conexão
 if (mysqli_connect_errno()) {
@@ -17,7 +16,7 @@ if (mysqli_connect_errno()) {
 //    Passo 3 - Abrir consulta ao banco de dados
     $consulta_categorias = "SELECT *";
     $consulta_categorias .= "FROM categorias";
-    $consulta_categorias = "WHERE categoriaID > 2";
+    $consulta_categorias .= "WHERE categoriaID > 2";
     $categorias = mysqli_query($conecta, $consulta_categorias);
 ?>
 
