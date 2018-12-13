@@ -6,6 +6,6 @@
     </head>
 
     <body>
-     <?php echo "fabio" ?>
+
     </body>
 </html>
