@@ -1,20 +1,9 @@
 <?php
-//    Passo 1 - Abrir conexão
-$servidor = "localhost";
-$usuario =  "fabiovalinhos";
-$senha =    "cebola";
-$banco =    "fase3";
-
-$conecta = mysqli_connect($servidor, $usuario, $senha, $banco);
-
-//Passo 2 -Testar conexão
-if (mysqli_connect_errno()) {
-    die("Conexão falhou: " . mysqli_connect_errno());
-}
+    require_once("../../conexao/conexao.php");
 ?>
 
 <?php
-//    Passo 3 - Abrir consulta ao banco de dados
+//   Passo 3 - Abrir consulta ao banco de dados
     $consulta_categorias = "SELECT nomeproduto";
     $consulta_categorias .= " FROM produtos ";
 
@@ -36,6 +25,7 @@ if (mysqli_connect_errno()) {
 
         <ul>
             <?php
+                // Passo 4 - Listagem dos dados com ul e li
                 while ($registro = mysqli_fetch_assoc($categorias)) {
             ?>
                 <li><?php echo $registro["nomeproduto"] ?></li>
@@ -43,8 +33,14 @@ if (mysqli_connect_errno()) {
                 }
             ?>
         </ul>
+
+        <?php
+            // Passo 5 - Liberar dados da memória
+            mysqli_free_result($categorias);
+        ?>
     </body>
 </html>
 <?php
+    // Passo 6 - Fechar conexão
     mysqli_close($conecta);
 ?>
