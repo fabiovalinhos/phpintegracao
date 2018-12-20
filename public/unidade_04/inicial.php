@@ -2,7 +2,7 @@
 
 <?php
 // Determinar a localidade
-setlocale(LC_ALL, "pt_BR");
+setlocale(LC_ALL, 'pt_BR');
 
 // Consulta do banco de dados
 $produtos = "SELECT produtoID, nomeproduto, tempoentrega, precounitario, imagempequena";
@@ -34,8 +34,8 @@ if (!resultado) {
         <main> 
             <div id="listagem_produtos">
                 <?php
-                while($linha = mysqli_fetch_assoc($resultado)) {
-                    ?>
+                    while($linha = mysqli_fetch_assoc($resultado)) {
+                ?>
                 <ul>
                     <li class="imagem">
                         <img src="<?php echo $linha["imagempequena"] ?>" alt="image">
