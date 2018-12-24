@@ -25,7 +25,9 @@
 
     <body>
         <?php include_once("_incluir/topo.php"); ?>
+
         
+
         <main>  
             
            <div id="listagem_produtos"> 
@@ -40,7 +42,7 @@
                     </li>
                     <li><h3><?php echo $linha["nomeproduto"] ?></h3></li>
                     <li>Tempo de Entrega : <?php echo $linha["tempoentrega"] ?></li>
-                    <li>Pre&ccedil;o unit&aacute;rio : <?php echo money_format('%.2n',$linha["precounitario"]) ?></li>
+                    <li>Preço unitário : <?php echo " R$ " . number_format($linha["precounitario"], 2,",", ".") ?></li>
                 </ul>
              <?php
                 }

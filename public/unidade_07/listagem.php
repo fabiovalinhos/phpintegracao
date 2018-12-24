@@ -1,6 +1,10 @@
 <?php require_once("../../conexao/conexao.php"); ?>
+<?php
+    session_start();
+?>
 
 <?php
+
     // Determinar localidade BR
     setlocale(LC_ALL, 'pt_BR');
 
@@ -40,22 +44,22 @@
             </div>
             
             <div id="listagem_produtos"> 
-            <?php
-                while($linha = mysqli_fetch_assoc($resultado)) {
-            ?>
-                <ul>
-                    <li class="imagem">
-                        <a href="detalhe.php?codigo=<?php echo $linha['produtoID'] ?>">
-                            <img src="<?php echo $linha["imagempequena"] ?>">
-                        </a>
-                    </li>
-                    <li><h3><?php echo $linha["nomeproduto"] ?></h3></li>
-                    <li>Tempo de Entrega : <?php echo $linha["tempoentrega"] ?></li>
-                    <li>Pre&ccedil;o unit&aacute;rio : <?php echo money_format('%.2n',$linha["precounitario"]) ?></li>
-                </ul>
-             <?php
-                }
-            ?>           
+                <?php
+                    while($linha = mysqli_fetch_assoc($resultado)) {
+                ?>
+                    <ul>
+                        <li class="imagem">
+                            <a href="detalhe.php?codigo=<?php echo $linha['produtoID'] ?>">
+                                <img src="<?php echo $linha["imagempequena"] ?>">
+                            </a>
+                        </li>
+                        <li><h3><?php echo $linha["nomeproduto"] ?></h3></li>
+                        <li>Tempo de Entrega : <?php echo $linha["tempoentrega"] ?></li>
+                        <li>Pre&ccedil;o unit&aacute;rio : <?php echo money_format('%.2n',$linha["precounitario"]) ?></li>
+                    </ul>
+                <?php
+                    }
+                ?>           
             </div>
             
         </main>
