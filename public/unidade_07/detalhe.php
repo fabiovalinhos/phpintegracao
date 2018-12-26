@@ -1,9 +1,18 @@
 <?php require_once("../../conexao/conexao.php"); ?>
 <?php
+
+    session_start();
+
+    // verificar se foi definido o usuário, senão volta para o login
+    if ( !isset($_SESSION["user_portal"]) ) {
+        header("location: login.php");
+    }
+
+
     if ( isset($_GET["codigo"]) ) {
         $produto_id = $_GET["codigo"];
     } else {
-        Header("Location: inicial.php");
+        header("Location: listagem.php");
     }
 
     // Consulta ao banco de dados
