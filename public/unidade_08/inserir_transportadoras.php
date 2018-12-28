@@ -2,7 +2,26 @@
 <?php
     // inserção no banco
     if (isset($_POST["nometransportadora"])) {
-        print_r($_POST);
+
+        $nome =     $_POST["nometransportadora"];
+        $endereco = $_POST["endereco"];
+        $cidade =   $_POST["cidade"];
+        $estado =   $_POST["estados"];
+        $cep =      $_POST["cep"];
+        $cnpj =     $_POST["cnpj"];
+        $telefone = $_POST["telefone"];
+
+        $inserir = "INSERT INTO transportadoras ";
+        $inserir .= "(nometransportadora, endereco, telefone, cidade, estadoID, cep, cnpj) ";
+        $inserir .= "VALUES ";
+        $inserir .= "('$nome', '$endereco', '$telefone', '$cidade', $estado, '$cep', '$cnpj')";
+
+        $operacao_inserir = mysqli_query($conecta, $inserir);
+
+        if (!$operacao_inserir) {
+            die("Erro no banco");
+        }
+
     }
 
     // seleção estado
@@ -34,7 +53,7 @@
             <div id="janela_formulario">
 
                 <form action="inserir_transportadoras.php" method="post">
-                    <input type="text" nome="nometransportadora" placeholder="Nome da Transportadora">
+                    <input type="text" name="nometransportadora" placeholder="Nome da Transportadora">
                     <input type="text" name="endereco" placeholder="Endereço">
                     <input type="text" name="telefone" placeholder="telefone">
                     <input type="text" name="cidade" placeholder="Cidade">
