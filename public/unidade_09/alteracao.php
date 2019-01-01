@@ -1,5 +1,36 @@
 <?php require_once("../../conexao/conexao.php"); ?>
 <?php
+
+    // Pegar as informações enviadas pelo formulário
+    if ( isset($_POST["nometransportadora"]) ){
+        $nome       = $_POST["nometransportadora"];
+        $endereco   = $_POST["endereco"];
+        $cidade     = $_POST["cidade"];
+        $estado     = $_POST["estados"];
+        $cep	    = $_POST["cep"];
+        $cnpj       = $_POST["cnpj"];
+        $telefone   = $_POST["telefone"];
+        $tID        = $_POST["transportadoraID"];
+
+        // Objeto para alterar
+        $alterar = "UPDATE transportadoras ";
+        $alterar .= "SET ";
+        $alterar .= "nometransportadora = '{$nome}', ";
+        $alterar .= "endereco = '{$endereco}', ";
+        $alterar .= "cidade = '{$cidade}', ";
+        $alterar .= "estadoID = {$estado}, ";
+        $alterar .= "cep = '{$cep}', ";
+        $alterar .= "cnpj = '{$cnpj}', ";
+        $alterar .= "telefone = '{$telefone}' ";
+        $alterar .= "WHERE transportadoraID = {$tID}";
+
+        $operacao_alterar = mysqli_query($conecta, $alterar);
+        if (!$operacao_alterar) {
+            die("Erro na alteração");
+        } else {
+            header("Location: listagem.php");
+        }
+    }
     
     // Consulta a tabela transportadoras
     $tr = "SELECT * ";
@@ -53,7 +84,7 @@
                     <input type="text" value="<?php echo $info_transportadora['nometransportadora'] ?>" name="nometransportadora" id="nometransportadora">
 
                     <label for="endereco"Endereço></label>
-                    <input type="text" value="<?php echo $info_transportadora['endereco'] ?>" name="enderco" id="endereco">
+                    <input type="text" value="<?php echo $info_transportadora['endereco'] ?>" name="endereco" id="endereco">
 
                     <label for="cidade">Cidade</label>
                     <input type="text" value="<?php echo $info_transportadora['cidade'] ?>" name="cidade" id="cidade">
@@ -93,6 +124,7 @@
                     <label for="cnpj">CNPJ</label>
                     <input type="text" value="<?php echo $info_transportadora['cnpj'] ?>" name="cnpj" id="cnpj">
 
+                    <input type="hidden" name="transportadoraID" value="<?php echo $info_transportadora["transportadoraID"] ?>" >
                     <input type="submit" value="Confirmar alterações">
                 </form>
             </div>
